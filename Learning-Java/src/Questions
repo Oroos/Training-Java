@@ -1,0 +1,5 @@
+1.zu src/set/HashSet: Wieso ist Set kein Interface von HashSet, indem video das ist 8 Jahre alt, da ging das noch.
+Antwort:
+
+2. zu src/test/TestClass: Laut dem Buch Clean Code Seite 76, geht die funktion appendTestAnders, könntest erklären wieso?.
+Antwort: 
