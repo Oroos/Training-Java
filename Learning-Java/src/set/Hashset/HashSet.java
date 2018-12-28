@@ -1,6 +1,5 @@
 package set.Hashset;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +17,7 @@ public class HashSet
         System.out.println(thingsList);
         System.out.println();
 
-        final Set<String> set = new HashSet<String>(thingsList);
+        final Set<String> set = new HashSet<>(thingsList);
         System.out.println(set);
         System.out.println();
     }
