@@ -4,7 +4,7 @@ public class TestClass
 {
     public void appendTestAnders(final StringBuffer test)
     {
-
+        test.append("fdlsa");
     }
 
     public static void appendTest(final StringBuffer test)
