@@ -1,2 +1,70 @@
-1. zu src/test/TestClass: Laut dem Buch Clean Code Seite 76, geht die funktion appendTestAnders, könntest erklären wieso das so ist?
-Antwort: 
+1. zu src/test/TestClass: Laut dem Buch Clean Code Seite 76, geht die funktion appendTestAnders, kï¿½nntest erklï¿½ren wieso das so ist?
+
+Antwort: Ok, es hat einige Zeit gedauert, bis ich deine Frage verstanden habe. Wie schon vorher erwï¿½hnt, mï¿½chte der Autor auf Seite 76 auf das Problem mit Output-Argumenten
+hinweisen und zeigt dazu einzeilige Code-Fragmente, um die Problematik klar zu machen. Die Variable report im dritten Code-Fragment soll nicht ein StringBuffer sein, das
+wï¿½rde wie du bereits herausgefunden hast ï¿½berhaupt nicht funktionieren, da die Klasse StringBuffer die Methode appendFooter() nicht besitzt. Die Variable report soll
+eine eigene Klasse reprï¿½sentieren, die Report-Funktionialitï¿½t anbietet. An dieser Klasse soll die Method appendFooter implementiert werden und diese soll den Footer zum
+Report hinzufï¿½gen. Er ist der Meinung, der ich mich in diesem Beispiel nur anschlieï¿½en kann, dass Output-Parameter schlecht sind, weil sie im Quellcode nicht so einfach zu
+erkennen sind. Man muss also im Quellcode nachschauen, wie die Methode appendFooter deklariert bzw. sogar implementiert wurde. Das sollte unbedingt vermieden werden, weil
+das deutlich zeigt, dass der Quellcode nicht gut zu lesen ist. Das ist aber wichtig, wenn man spï¿½ter einfach ï¿½ndeerungen vornehmen mÃ¶chte. 
+
+Ich beschreibe mal ausfï¿½hrlicher, was der Author auf Seite 76 mit seinen sehr kurzen Beispielen aussagen mï¿½chte.
+
+Das Thema ist Output-Argumente und das sie im allgemeinen schlecht sind und zu unleserlichen Code fï¿½hren. Output-Parameter sind, wenn Argumente als Rï¿½ckgabe fï¿½r den Aufrufer
+genutzt werden.
+
+Ich versuche mal den Code, den Autor wohl gemeint haben kï¿½nnte hier zu skizzieren.
+
+public class ReportGenerator {
+
+  public void appendFooter(StringBuffer report) {
+      report.append("Footer");
+  }
+}
+
+
+Quellcode 1:
+
+  appendFooter(s);
+
+Hier stellt er die Frage, ob dieser Einzeiler bedeutet
+a) HÃ¤ngt die Funktion s als Fuï¿½zeile an etwas an ODER
+b) HÃ¤ngt die Funktion die Fuï¿½zeile an s an  <-- (das wï¿½re der Fall, wenn es ein Output-Parameter wï¿½re)
+
+Quellcode 2:
+
+  public void appendFooter(StringBuffer report)
+
+Diese Zeile soll jetzt zeigen, wie der Autor des Codes die Funktion appendFooter deklariert hat. Wie du in meinem Beispiel "ReportGenerator" oben sehen kannst, muss man 
+der Funktion appendFooter eine StringBuffer-Instanz ï¿½bergeben, damit diese von der Implementierungsklasse verï¿½ndert werden kann. So eine Implementierung ist schon
+zweilfelhat. Die Klasse StringBuffer wurde eingefï¿½hrt, damit man einen String performant zusammenbauen kann. Den StringBuffer als Mï¿½glichkeit zu nutzen, damit eine
+Funktion diese manipulieren kann, um das Ergebnis zurï¿½ckzugeben ist definitiv nicht offensichtlich und damit ï¿½berraschend. Damit ist das schwer zu lesen und am Ende
+fehleranfï¿½llig.
+
+Der Autor meint, dass man Output-Parameter in Java ï¿½berhaupt nicht braucht und das es die Aufgabe von this ist als Output-Parameter zu dienen. Das bedeutet man soll den
+Aufruf von appendFooter so schreiben:
+
+Quellcode 3:
+
+  report.appendFooter();
+
+Die Lï¿½sung, die sich der Autor wï¿½nscht, kï¿½nnte fï¿½r mein obiges Beispiel dann so aussehen:
+
+public class Report {
+
+  private StringBuffer reportString;
+
+  public void appendFooter() {
+      reportString.append("Footer");
+  }
+}
+
+Damit muss kein StringBuffer in appendFooter mehr ï¿½bergeben werden. Die Klasse "Report" ï¿½bernimmt die Speicherung des Report-Strings intern und wie in Quellcode 3 zu sehen, 
+ist sofort klar, dass appendFooter einen Footer an den Report anhï¿½ngt.
+
+Ich hoffe, mit dieser lï¿½ngeren Erklï¿½rung ist jetzt klarer, worum es dem Autor auf Seite 76 ging. Er fï¿½hrt keine neuen Konzepte fï¿½r den Aufruf von Funktionen/Methoden ein,
+sondern versucht, auf wenige Sï¿½tze beschrï¿½nkt den Sachverhalt von Output-Argumenten zu erklï¿½ren.
+
+Wie ich bereits in meiner letzten Antwort angemerkt hatte, ist das Buch fï¿½r Personen, die bereits Java als Programmiersprache beherrschen und ihren Programmierstil
+verbessern wollen. Es ist nicht dafï¿½r gedacht, um Java erstmal zu erlernen. Das setzt der Autor fï¿½r das Buch bereits voraus. Deshalb sind die Erklï¿½rungen an vielen
+Stellen kurz und knacking, weil er davon ausgeht, dass die Beispiele fï¿½r Java-Programmierer ausreichen. 
