@@ -15,12 +15,12 @@ genutzt werden.
 
 Ich versuche mal den Code, den Autor wohl gemeint haben k�nnte hier zu skizzieren.
 
-public class ReportGenerator {
-
-  public void appendFooter(StringBuffer report) {
-      report.append("Footer");
-  }
-}
+	public class ReportGenerator {
+	
+	  public void appendFooter(StringBuffer report) {
+	      report.append("Footer");
+	  }
+	}
 
 
 Quellcode 1:
@@ -68,3 +68,8 @@ sondern versucht, auf wenige S�tze beschr�nkt den Sachverhalt von Output-Arg
 Wie ich bereits in meiner letzten Antwort angemerkt hatte, ist das Buch f�r Personen, die bereits Java als Programmiersprache beherrschen und ihren Programmierstil
 verbessern wollen. Es ist nicht daf�r gedacht, um Java erstmal zu erlernen. Das setzt der Autor f�r das Buch bereits voraus. Deshalb sind die Erkl�rungen an vielen
 Stellen kurz und knacking, weil er davon ausgeht, dass die Beispiele f�r Java-Programmierer ausreichen. 
+
+
+
+
+Danke sehr mittlerweile, macht das beispiel auch um einiges mehr Sinn. :D
