@@ -1,0 +1,13 @@
+der code in Crypto_Test gibt mir immer folgenden fehler und ich weiß nicht woran das liegt,
+ich habe gesucht und gesucht und nur gefunden das der key falsch seien könnte was er aber nicht ist.
+
+das problem trifft auch bei anderem code auf mit CipherInput/OutputStream, nur mit anderem stacktrace versteht sich.
+ 
+Original : This is the secret message... BOO!
+Exception in thread "main" javax.crypto.BadPaddingException: Given final block not properly padded. Such issues can arise if a bad key is used during decryption.
+	at java.base/com.sun.crypto.provider.CipherCore.unpad(CipherCore.java:975)
+	at java.base/com.sun.crypto.provider.CipherCore.fillOutputBuffer(CipherCore.java:1056)
+	at java.base/com.sun.crypto.provider.CipherCore.doFinal(CipherCore.java:853)
+	at java.base/com.sun.crypto.provider.PBES2Core.engineDoFinal(PBES2Core.java:323)
+	at java.base/javax.crypto.Cipher.doFinal(Cipher.java:2202)
+	at test.Crypto_Test.main(Crypto_Test.java:38)
