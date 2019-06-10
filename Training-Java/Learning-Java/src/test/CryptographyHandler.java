@@ -94,7 +94,7 @@ public class CryptographyHandler
         CryptographyHandler c = new CryptographyHandler();
         char[] pw = {'2'};
         c.encryptFile(Paths.get(".\\src\\test\\testfile"), pw);
-        //        c.decryptFile(Paths.get("C:\Coden\Git\eclipse\Oroos\Training-Java\Learning-Java\src\test\testfile"),
+        //        c.decryptFile(Paths.get(".\\src\\test\\testfile"),
         //                      pw);
     }
 
