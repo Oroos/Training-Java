@@ -32,7 +32,7 @@ public class Crypto_Test
 
         // Build the decryption cipher.
         final Cipher cipherDecrypt = Cipher.getInstance("PBEWithHmacSHA512AndAES_256/CBC/PKCS5Padding");
-        cipherDecrypt.init(Cipher.DECRYPT_MODE, key, cipherDecrypt.getParameters());
+        cipherDecrypt.init(Cipher.DECRYPT_MODE, key, cipherEncrypt.getParameters());
 
         // Decrypt!
         final String decrypted = new String(cipherDecrypt.doFinal(ciphertext), StandardCharsets.US_ASCII);
